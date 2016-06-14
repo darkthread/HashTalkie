@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Parent Window</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <h5 id="txtUrl"></h5>
+    <textarea id="txtMsg"></textarea>
+    <button id="btnSend">Send</button>
+    <hr />
+    <iframe id="frmChild"></iframe>
+
+    <script src="../Scripts/hashTalkie.js"></script>
+    <script>
+        document.getElementById("txtUrl").innerText = location.href;
+        var frameUrl = location.href.replace("parent", "child");
+        document.getElementById("frmChild").src =
+            frameUrl + "#" + location.href;
+
+        var ht = new hashTalkie("frmChild");
+        ht.onIFrameReady = function () {
+            ht.sendMessage("IFrame is ready");
+        };
+        ht.setChannel(frameUrl, function (msg) {
+            alert("Message from Child: " + msg);
+        });
+        document.getElementById("btnSend").onclick = function () {
+            ht.sendMessage(document.getElementById("txtMsg").value);
+        };
+    </script>
+</body>
+</html>
