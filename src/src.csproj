@@ -65,6 +65,7 @@
     <Content Include="Htmls\child.html" />
     <Content Include="Htmls\parent.html" />
     <Content Include="Images\Walkie Talkie Radio-48.png" />
+    <Content Include="Images\Walkie Talkie Radio-96.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
