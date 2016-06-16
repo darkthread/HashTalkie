@@ -2,7 +2,15 @@
 <html>
 <head>
     <title>IFrame Window</title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <style>
+        textarea {
+            width: 320px;
+            height: 40px;
+            margin-bottom: 6px;
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <h5 id="txtUrl"></h5>
@@ -10,7 +18,7 @@
     <button id="btnSend">Send</button>
     <script src="../Scripts/hashTalkie.js"></script>
     <script>
-        document.getElementById("txtUrl").innerText = 
+        document.getElementById("txtUrl").innerText =
             location.href.split('#')[0];
         var parentUrl = location.hash.replace(/#/g, "");
         var ht = new hashTalkie();
