@@ -15,6 +15,10 @@
     <script>
         document.getElementById("txtUrl").innerText = location.href;
         var frameUrl = location.href.replace("parent", "child");
+        //if it's on htmlpreview.github.io, access child on rawgit.com to cross site
+        if (frameUrl.indexOf("htmlpreview.github.io") > -1) {
+            frameUrl = frameUrl.split('?')[1].replace("github.com", "rawgit.com");
+        }
         document.getElementById("frmChild").src =
             frameUrl + "#" + location.href;
 
