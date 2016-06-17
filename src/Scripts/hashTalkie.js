@@ -59,14 +59,16 @@ var hashTalkie = (function () {
             //console && console.log(location.href);
             var hash = location.hash.replace(/^#/, "");
             location.hash = "";
-            if (hash == "$MSG") {
+            if (hash.indexOf("$MSG") == 0) {
                 self.msgBuffer = [];
+                self.msgSeq = hash.split('-')[1];
             }
             else if (hash.indexOf("$BODY") == 0) {
                 self.msgBuffer.push(hash.substr(5));
                 self.sendAck();
             }
-            else if (hash == "$OK") {
+            else if (hash.indexOf("$OK") == 0 && hash.split('-')[1] == self.msgSeq) {
+                self.msgSeq = null;
                 var msg = self.msgBuffer.join("");
                 if (self.onMessage)
                     self.onMessage(msg);
@@ -116,12 +118,13 @@ var hashTalkie = (function () {
             buffer.push(message.substr(n * PACKET_SIZE, r));
         }
         self.acked = true;
-        self.setTargetHash("$MSG");
+        var seq = Math.random();
+        self.setTargetHash("$MSG-" + seq);
         var hnd = setInterval(function () {
             if (!self.acked)
                 return;
             if (buffer.length == 0) {
-                self.setTargetHash("$OK");
+                self.setTargetHash("$OK-" + seq);
                 clearInterval(hnd);
                 return;
             }
