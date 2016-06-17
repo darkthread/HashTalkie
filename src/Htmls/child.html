@@ -23,7 +23,7 @@
         var parentUrl = location.hash.replace(/#/g, "");
         var ht = new hashTalkie();
         ht.setChannel(parentUrl, function (msg) {
-            alert("Message from Parent: " + msg);
+            alert("Message from Parent(Len=" + msg.length + "): " + msg);
         });
         document.getElementById("btnSend").onclick = function () {
             ht.sendMessage(document.getElementById("txtMsg").value);

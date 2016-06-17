@@ -39,7 +39,7 @@
             ht.sendMessage("IFrame is ready");
         };
         ht.setChannel(frameUrl, function (msg) {
-            alert("Message from Child: " + msg);
+            alert("Message from Child(Len=" + msg.length + "): " + msg);
         });
         document.getElementById("btnSend").onclick = function () {
             ht.sendMessage(document.getElementById("txtMsg").value);
