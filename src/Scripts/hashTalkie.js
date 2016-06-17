@@ -86,7 +86,8 @@ var hashTalkie = (function () {
         }
         if (window.addEventListener)
             window.addEventListener("hashchange", onHashChange);
-        else {
+        else if (navigator.userAgent.indexOf("MSIE 7") > 0) {
+            //console && console.log("setInternal onhashchange");
             var lastHash = location.hash;
             var hnd = setInterval(function () {
                 if (location.hash != lastHash) {
@@ -95,6 +96,10 @@ var hashTalkie = (function () {
                 }
             }, 50);
         }
+        else if ("attachEvent" in window)
+            window["attachEvent"]("onhashchange", onHashChange);
+        else
+            alert("Unsupported browser!");
     }
     hashTalkie.prototype.setTargetHash = function (data) {
         if (!this.targetUrl) {
@@ -130,7 +135,7 @@ var hashTalkie = (function () {
             }
             self.acked = false;
             self.setTargetHash("$BODY" + buffer.shift());
-        }, 10);
+        }, 55);
     };
     hashTalkie.prototype.sendAck = function () {
         this.setTargetHash("$ACK");
@@ -146,4 +151,3 @@ var hashTalkie = (function () {
     hashTalkie.instance = null;
     return hashTalkie;
 })();
-//# sourceMappingURL=hashTalkie.js.map

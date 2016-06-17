@@ -78,7 +78,7 @@ class hashTalkie {
             }
             self.acked = false;
             self.setTargetHash("$BODY" + buffer.shift());
-        }, 10);
+        }, 55);
     }
 
     sendAck() {
@@ -114,8 +114,6 @@ class hashTalkie {
             self.containerMode = false;
         }
 
-
-
         function onHashChange(ev) {
             //console && console.log(location.href);
             var hash = location.hash.replace(/^#/, "");
@@ -146,7 +144,8 @@ class hashTalkie {
 
         if (window.addEventListener)
             window.addEventListener("hashchange", onHashChange);
-        else {
+        else if (navigator.userAgent.indexOf("MSIE 7") > 0) {
+            //console && console.log("setInternal onhashchange");
             var lastHash = location.hash;
             var hnd = setInterval(() => {
                 if (location.hash != lastHash) {
@@ -155,6 +154,10 @@ class hashTalkie {
                 }
             }, 50);
         }
+        else if ("attachEvent" in window)
+            window["attachEvent"]("onhashchange", onHashChange);
+        else
+            alert("Unsupported browser!");
 
     }
 
