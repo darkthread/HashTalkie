@@ -55,6 +55,12 @@ setChannel() to give parent page's url and message event handler, that's all.
 
 Here is the [live demo](http://htmlpreview.github.io/?https://github.com/darkthread/HashTalkie/master/src/Htmls/parent.html), have fun!
 
+Known Issues
+------------
+
+* The location.hash is used for message exchange, so you wil lost history forward/backword function.  You can put the parent page into a iframe to resolve the issue.
+* Long message will be splited in 512 bytes each packet and sent in one packet / 55ms. Sending 10K string will cost more than one second, I guess it's fast enough. You can change timerInterval property to make it faster.   
+
 中文說明
 =======
 
@@ -109,5 +115,11 @@ Hash Talkie是一個簡單的程式庫，提供基本的交握協調、接收確
 ````
 
 這裡有[Live Demo](http://htmlpreview.github.io/?https://github.com/darkthread/HashTalkie/master/src/Htmls/parent.html)可以試玩，Have Fun!
+
+已知問題
+------------
+
+* 由於location.hash被用於資料傳輸，瀏覽器回上頁功能將因此失效，將父網頁也內嵌到IFrame內可避免問題。
+* 長訊息會以512 Bytes為單位切割成多個封包並以55ms一個封包的頻率傳送，傳送10K資料耗時將超過1秒，如有需要可調整timerInterval屬性加快。
 
 Icon from [icons8.com](http://icons8.com)
