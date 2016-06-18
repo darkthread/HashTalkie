@@ -70,7 +70,7 @@ Known Issues
 應用場合
 -----------
 
-當網頁以IFrame內嵌來自其他站台網頁時，受限於[同源原則](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)，無法使用JavaScript存取IFrame網頁DOM或與其溝通。
+當網頁以IFrame內嵌來自其他站台網頁時，受限於[同源政策](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy)，無法使用JavaScript存取IFrame網頁DOM或與其溝通。
 
 透過修改IFrame或父網頁URL#後方參數(location.hash)傳遞訊息是種簡單卻有效的跨站台網頁溝通方式，其中最大的好處是能通吃各種瀏覽器，連最古老的IE6也能搞定。
 
